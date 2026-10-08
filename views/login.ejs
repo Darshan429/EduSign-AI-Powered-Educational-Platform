@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+    <style>
+        .logout-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem auto;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('./partials/header') %>
+
+    <main id="login-content">
+        <% if (locals.logoutSuccess) { %>
+        <div class="logout-message">
+            You have been logged out successfully. Please log in again to continue.
+        </div>
+        <% } %>
+        
+        <section class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>Log In to EduSign</h1>
+                    <p id="auth-subheader">Welcome back! Please enter your credentials to continue</p>
+                </div>
+
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="login-tab">Log In</button>
+                    <button class="auth-tab" id="register-tab">Register</button>
+                </div>
+
+                <div class="success-message" id="auth-success-message"></div>
+
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" name="email" required>
+                        <div class="error-message" id="login-email-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required>
+                        <div class="error-message" id="login-password-error"></div>
+                        <div class="password-options">
+                            <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
+                        </div>
+                    </div>
+                    <div class="form-group remember-me">
+                        <input type="checkbox" id="remember-me" name="rememberMe">
+                        <label for="remember-me">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn primary-btn login-btn" id="login-submit-btn">Log In</button>
+                </form>
+
+                <form id="register-form" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" name="fullName" required>
+                        <div class="error-message" id="register-name-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email Address</label>
+                        <input type="email" id="register-email" name="email" required>
+                        <div class="error-message" id="register-email-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" name="password" required>
+                        <div class="error-message" id="register-password-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirmPassword" required>
+                        <div class="error-message" id="confirm-password-error"></div>
+                    </div>
+                    <div class="form-group user-type">
+                        <label>I am a:</label>
+                        <div class="radio-options">
+                            <div class="radio-option">
+                                <input type="radio" id="parent" name="userType" value="parent" checked>
+                                <label for="parent">Parent</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="educator" name="userType" value="educator">
+                                <label for="educator">Educator</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="other" name="userType" value="other">
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group terms">
+                        <div class="remember-me">
+                            <input type="checkbox" id="agree-terms" name="agreeToTerms" required>
+                            <label for="agree-terms">I agree to the <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a></label>
+                        </div>
+                        <div class="error-message" id="terms-error"></div>
+                    </div>
+                    <button type="submit" class="btn primary-btn register-btn" id="register-submit-btn">Create Account</button>
+                </form>
+
+                <div class="social-login">
+                    <p>Or continue with</p>
+                    <div class="social-buttons">
+                        <button type="button" class="social-btn google-btn" id="google-login">
+                            <img src="/assets/imgs/googlelogo.png" alt="Google Logo">
+                            Google
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('./partials/footer') %>
+
+    <!-- Import the authentication script -->
+    <script src="/js/auth.js"></script>
+</body>
+
+</html>
